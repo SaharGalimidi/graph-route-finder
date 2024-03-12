@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Graph-Based Route Finder</title>
+</head>
+
+<body>
+    <form action="/" method="post">
+        <label for="start">Start Vertex:</label>
+        <select name="start" id="start">
+            {% for vertex in vertices %}
+            <option value="{{ vertex }}">{{ vertex }}</option>
+            {% endfor %}
+        </select>
+        <label for="end">End Vertex:</label>
+        <select name="end" id="end">
+            {% for vertex in vertices %}
+            <option value="{{ vertex }}">{{ vertex }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="action" value="find_shortest_path">Find Shortest Path</button>
+    </form>
+
+    <form action="/" method="post">
+        <label for="closest">Vertex:</label>
+        <select name="closest" id="closest">
+            {% for vertex in vertices %}
+            <option value="{{ vertex }}">{{ vertex }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="action" value="find_closest_vertex">Find Closest Vertex</button>
+    </form>
+
+    {% if shortest_path %}
+    <p>Shortest path: {{ shortest_path }}</p>
+    {% if path_distance %}
+    <p>Path distance: {{ path_distance }}</p>
+    {% endif %}
+    {% endif %}
+
+    {% if closest_vertex %}
+    <p>Closest vertex: {{ closest_vertex }}</p>
+    {% endif %}
+
+    <img src="{{ url_for('static', filename='images/graph.png') }}" alt="Graph with shortest path">
+</body>
+
+</html>
