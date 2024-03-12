@@ -41,16 +41,3 @@ def index():
     return render_template('index.html', vertices=graph.adjacency_dict.keys(),
                            shortest_path=shortest_path, path_distance=path_distance, closest_vertex=closest_vertex)
 
-# def test():
-#     file_path = os.path.join(os.path.dirname(__file__), 'graph_example.json')
-#     with open(file_path) as file:
-#         json_data = json.load(file)
-#     graph = Graph.create_graph_from_json(json_data)
-#     closest_vertex = None
-#     vertex = (31.36, 35.45)
-#     closest_vertex = graph.find_closest_vertex(vertex)
-#     print(closest_vertex)
-#     return
-
-# if __name__ == '__main__':
-#     test()
