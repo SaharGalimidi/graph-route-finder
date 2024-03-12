@@ -7,7 +7,7 @@ This is a Flask application for finding routes in a graph.
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/your_username/graph-route-finder.git
+    git clone https://github.com/SaharGalimidi/graph-route-finder.git
     ```
 
 2. **Navigate to the Project Directory:**
