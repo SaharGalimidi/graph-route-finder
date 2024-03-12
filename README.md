@@ -1,6 +1,8 @@
 # Graph-Based Route Finder
 
 This is a Flask application for finding routes in a graph.
+It uses the Dijkstra algorithm to find the shortest path between two nodes in a graph.
+Edges are weighted and the weight is the distance between the nodes using Euclidean distance .
 
 ## How to Run
 
