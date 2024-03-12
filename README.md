@@ -63,19 +63,19 @@ Edges are weighted and the weight is the distance between the nodes using Euclid
 
 5. **Activate the Virtual Environment:**
     
-        Activate the virtual environment using the following command:
+    Activate the virtual environment using the following command:
     
-        - On Windows:
+    - On Windows:
     
-            ```bash
-            venv\Scripts\activate
-            ```
-    
-        - On macOS and Linux:
-    
-            ```bash
-            source venv/bin/activate
-            ```
+        ```bash
+        venv\Scripts\activate
+        ```
+
+    - On macOS and Linux:
+
+        ```bash
+        source venv/bin/activate
+        ```
 
 
 6. **Install Dependencies:**
