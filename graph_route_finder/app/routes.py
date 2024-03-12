@@ -40,4 +40,3 @@ def index():
 
     return render_template('index.html', vertices=graph.adjacency_dict.keys(),
                            shortest_path=shortest_path, path_distance=path_distance, closest_vertex=closest_vertex)
-

@@ -158,7 +158,8 @@ class Graph:
             labels[vertex_str] = vertex_str
 
         # Plot vertices with labels
-        ax.scatter(x_coords, y_coords, color='blue', marker='o', label='Vertices')
+        ax.scatter(x_coords, y_coords, color='blue',
+                   marker='o', label='Vertices')
         for vertex_str, (x, y) in zip(self.adjacency_dict.keys(), zip(x_coords, y_coords)):
             ax.text(x, y, labels[vertex_str], fontsize=8,
                     ha='center', va='center')  # Add vertex label
@@ -226,17 +227,6 @@ class Graph:
         x1, y1 = coord1
         x2, y2 = coord2
         return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-
-    @staticmethod
-    def print_graph(graph: AdjacencyDict) -> None:
-        """
-        Print the graph as an adjacency list.
-
-        Args:
-            graph (AdjacencyDict): The graph represented as an adjacency list.
-        """
-        for vertex, neighbors in graph.items():
-            print(f"{vertex}: {neighbors}")
 
     @staticmethod
     def create_graph_from_json(json_data: dict) -> 'Graph':
