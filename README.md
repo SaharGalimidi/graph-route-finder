@@ -13,7 +13,7 @@ This is a Flask application for finding routes in a graph.
 2. **Navigate to the Project Directory:**
 
     ```bash
-    cd graph-route-finder
+    cd graph-route-finder/graph_route_finder
     ```
 
 3. **Build the Docker Image:**
