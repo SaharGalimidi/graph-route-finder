@@ -1,9 +1,7 @@
-
 import heapq
 import math
 from typing import Dict, Tuple, List, Optional
 import matplotlib.pyplot as plt
-# Use non-interactive backend to avoid displaying the plot
 plt.switch_backend('Agg')
 
 
@@ -12,8 +10,18 @@ AdjacencyDict = Dict[str, Dict[str, float]]
 
 
 class Graph:
-    def __init__(self) -> None:
+    def __init__(self, json_data: dict = None) -> None:
+        """
+        Initialize the graph.
+        :param json_data: The JSON object representing the graph.
+        if json_data is None, the graph will be empty.
+        return: None
+        """
         self.adjacency_dict: AdjacencyDict = {}
+        if json_data:
+            self.create_graph_from_json(json_data)
+        else:
+            self.adjacency_dict = {}
 
     def add_vertex(self, vertex: str) -> None:
         """
@@ -125,6 +133,8 @@ class Graph:
 
             if distance < min_distance:
                 min_distance = distance
+                print(min_distance)
+                print("vertex_coord", vertex_coord)
                 closest_vertex = vertex_coord
 
         return closest_vertex, min_distance
@@ -188,7 +198,7 @@ class Graph:
             for neighbor_str, weight in self.adjacency_dict[str(source_vertex)].items():
                 neighbor_coord = tuple(
                     map(float, neighbor_str[1:-1].split(', ')))
-                if neighbor_coord == closest_vertex_coord:
+                if neighbor_coord == closest_vertex_coord:  # Found the edge
                     ax.plot([source_vertex[0], neighbor_coord[0]], [
                             source_vertex[1], neighbor_coord[1]], color='red', linewidth=2)
                     break
@@ -212,8 +222,7 @@ class Graph:
         image_path = 'app/static/images/graph.png'
         plt.savefig(image_path)  # Save the figure
 
-    @staticmethod
-    def __distance(coord1: Vertex, coord2: Vertex) -> float:
+    def __distance(self, coord1: Vertex, coord2: Vertex) -> float:
         """
         Calculate the Euclidean distance between two coordinates.
 
@@ -228,10 +237,11 @@ class Graph:
         x2, y2 = coord2
         return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
-    @staticmethod
-    def create_graph_from_json(json_data: dict) -> 'Graph':
-        graph = Graph()
-
+    def create_graph_from_json(self, json_data: dict) -> None:
+        """
+        Create a graph from a JSON object.
+        :param json_data: The JSON object representing the graph.
+        """
         # A set to keep track of all vertices (to avoid duplicates).
         all_vertices = set()
 
@@ -246,12 +256,10 @@ class Graph:
 
         # Now, add all vertices to the graph.
         for vertex_str in all_vertices:
-            graph.add_vertex(vertex_str)
+            self.add_vertex(vertex_str)
 
         # Finally, add all edges to the graph.
         for vertex_str, neighbors_list in json_data.items():
             for neighbor in neighbors_list:
                 neighbor_str = f"({neighbor[0]}, {neighbor[1]})"
-                graph.add_edge(vertex_str, neighbor_str)
-
-        return graph
+                self.add_edge(vertex_str, neighbor_str)
